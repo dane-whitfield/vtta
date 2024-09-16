@@ -1,0 +1,35 @@
+{
+  "name": "vtta",
+  "version": "1.0.0",
+  "description": "A CLI to bootstrap a new Vite project with customisable options",
+  "main": "dist/cli.js",
+  "types": "dist/cli.d.ts",
+  "bin": {
+    "vtta": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "vite",
+    "react",
+    "typescript",
+    "tailwind",
+    "cli"
+  ],
+  "author": "Dane Whitfield",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.3.0",
+    "fs-extra": "^10.0.0",
+    "inquirer": "^10.2.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/node": "^22.5.5",
+    "typescript": "^5.6.2"
+  }
+}
