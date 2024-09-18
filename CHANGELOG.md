@@ -22,3 +22,7 @@
   - Auto publishing to npm repository
   - Biome linting
   - Running CI checks
+
+## [1.1.1] - 2024-09-18
+
+- Link npm package to repo

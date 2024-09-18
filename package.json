@@ -1,10 +1,14 @@
 {
   "name": "vtta",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A CLI to bootstrap a new Vite project with customisable options",
   "type": "module",
   "main": "dist/cli.js",
   "types": "dist/cli.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dane-whitfield/vtta.git"
+  },
   "bin": {
     "vtta": "./dist/cli.js"
   },
