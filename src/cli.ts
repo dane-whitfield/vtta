@@ -9,7 +9,7 @@ import { getUserChoices } from './userPrompts';
 import { setupProject } from './projectSetup';
 
 program
-  .version('1.0.1')
+  .version('1.1.0')
   .description(
     'A CLI to bootstrap a new Vite project with customisable options'
   )
