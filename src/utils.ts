@@ -4,27 +4,32 @@ import path from 'path';
 import { execSync } from 'child_process';
 import { UserChoices } from './types';
 
-export function validateProjectName(projectName: string, projectDir: string) {
+export const validateProjectName = (
+  projectName: string,
+  projectDir: string
+) => {
   if (fs.existsSync(projectDir)) {
     console.error(chalk.red(`Error: Directory ${projectName} already exists.`));
     process.exit(1);
   }
-}
+};
 
-export function createFolderStructure(projectDir: string) {
+export const createFolderStructure = (projectDir: string) => {
   console.log(chalk.yellow('Creating folder structure...'));
   ['src/components', 'src/pages', 'src/utils', 'src/hooks'].forEach((dir) => {
     fs.mkdirSync(path.join(projectDir, dir), { recursive: true });
   });
-}
+};
 
-export async function installVite(useTypescript: boolean) {
+export const installVite = async (useTypescript: boolean) => {
   console.log(chalk.yellow('Initialising Vite project...'));
   const template = useTypescript ? 'react-ts' : 'react';
-  execSync(`npm init vite@latest . -- --template ${template}`, { stdio: 'inherit' });
-}
+  execSync(`npm init vite@latest . -- --template ${template}`, {
+    stdio: 'inherit',
+  });
+};
 
-export async function installDependencies(userChoices: UserChoices) {
+export const installDependencies = async (userChoices: UserChoices) => {
   if (userChoices.axios) {
     console.log(chalk.yellow('Installing axios...'));
     execSync('npm install axios', { stdio: 'inherit' });
@@ -32,7 +37,9 @@ export async function installDependencies(userChoices: UserChoices) {
 
   if (userChoices.tailwind) {
     console.log(chalk.yellow('Installing Tailwind CSS...'));
-    execSync('npm install -D tailwindcss postcss autoprefixer', { stdio: 'inherit' });
+    execSync('npm install -D tailwindcss postcss autoprefixer', {
+      stdio: 'inherit',
+    });
     execSync('npx tailwindcss init -p', { stdio: 'inherit' });
   }
 
@@ -40,9 +47,9 @@ export async function installDependencies(userChoices: UserChoices) {
     console.log(chalk.yellow('Installing React Router...'));
     execSync('npm install react-router-dom', { stdio: 'inherit' });
   }
-}
+};
 
-export async function setupTailwind(projectDir: string) {
+export const setupTailwind = async (projectDir: string) => {
   const tailwindConfig = `
 module.exports = {
   content: [
@@ -63,9 +70,9 @@ module.exports = {
 @tailwind utilities;
   `;
   fs.writeFileSync(path.join(projectDir, 'src/index.css'), indexCSS);
-}
+};
 
-export async function setupAxios(projectDir: string) {
+export const setupAxios = async (projectDir: string) => {
   const apiContent = `
 import axios from 'axios';
 
@@ -84,9 +91,9 @@ export const getSomething = async () => {
 
   const envExampleContent = `VITE_API_URL=your_api_url_here`;
   fs.writeFileSync(path.join(projectDir, '.env.example'), envExampleContent);
-}
+};
 
-export async function setupShadcn(projectDir: string) {
+export const setupShadcn = async (projectDir: string) => {
   console.log(chalk.yellow('Setting up shadcn/ui...'));
 
   // 1. Update tsconfig.json and tsconfig.app.json with hardcoded content first
@@ -192,7 +199,11 @@ export async function setupShadcn(projectDir: string) {
 
   try {
     fs.writeFileSync(componentsJsonPath, componentsJsonContent);
-    console.log(chalk.green(`components.json file created successfully at: ${componentsJsonPath}`));
+    console.log(
+      chalk.green(
+        `components.json file created successfully at: ${componentsJsonPath}`
+      )
+    );
   } catch (error) {
     console.error(chalk.red('Error creating components.json file:'), error);
     process.exit(1);
@@ -211,9 +222,12 @@ export async function setupShadcn(projectDir: string) {
     execSync('npx shadcn@latest add button', { stdio: 'inherit' });
     console.log(chalk.green('Button component installed successfully.'));
   } catch (error) {
-    console.error(chalk.red('An error occurred during shadcn/ui installation:'), error);
+    console.error(
+      chalk.red('An error occurred during shadcn/ui installation:'),
+      error
+    );
     process.exit(1);
   }
 
   console.log(chalk.green('ShadCN setup completed successfully.'));
-}
+};

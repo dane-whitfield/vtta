@@ -3,13 +3,16 @@ import { program } from 'commander';
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import path from 'path';
+
+import { validateProjectName } from './utils';
 import { getUserChoices } from './userPrompts';
 import { setupProject } from './projectSetup';
-import { validateProjectName } from './utils';
 
 program
-  .version('1.0.0')
-  .description('A CLI to bootstrap a new Vite project with customisable options')
+  .version('1.0.1')
+  .description(
+    'A CLI to bootstrap a new Vite project with customisable options'
+  )
   .argument('<project-name>', 'Name of the project')
   .option('-y, --yes', 'Skip prompts and use default options')
   .action(async (projectName, options) => {

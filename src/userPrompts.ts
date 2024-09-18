@@ -1,7 +1,9 @@
 import inquirer from 'inquirer';
 import { UserChoices } from './types';
 
-export async function getUserChoices(skipPrompts: boolean): Promise<UserChoices> {
+export const getUserChoices = async (
+  skipPrompts: boolean
+): Promise<UserChoices> => {
   if (skipPrompts) {
     return {
       typescript: true,
@@ -44,4 +46,4 @@ export async function getUserChoices(skipPrompts: boolean): Promise<UserChoices>
       default: true,
     },
   ]);
-}
+};
