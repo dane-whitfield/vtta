@@ -26,3 +26,9 @@
 ## [1.1.1] - 2024-09-18
 
 - Link npm package to repo
+
+## [1.1.2] - 2024-09-22
+
+- Fixes:
+  - https://github.com/dane-whitfield/vtta/issues/1
+  - https://github.com/dane-whitfield/vtta/issues/2
