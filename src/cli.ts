@@ -4,12 +4,16 @@ import chalk from 'chalk';
 import fs from 'fs-extra';
 import path from 'path';
 
-import { validateProjectName } from './utils.js';
+import { checkForUpdates, validateProjectName } from './utils.js';
 import { getUserChoices } from './userPrompts.js';
 import { setupProject } from './projectSetup.js';
+import packageJson from '../package.json' assert { type: 'json' };
+
+// Run the version check asynchronously to prevent blocking CLI execution
+setTimeout(checkForUpdates, 1000);
 
 program
-  .version('1.1.2')
+  .version(packageJson.version)
   .description(
     'A CLI to bootstrap a new Vite project with customisable options'
   )
