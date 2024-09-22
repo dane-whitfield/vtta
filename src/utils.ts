@@ -3,6 +3,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import { execSync } from 'child_process';
 
+import packageJson from '../package.json' assert { type: 'json' };
 import { UserChoices } from './types.js';
 
 export const validateProjectName = (
@@ -234,4 +235,21 @@ export default defineConfig({
   }
 
   console.log(chalk.green('ShadCN setup completed successfully.'));
+};
+
+export const checkForUpdates = () => {
+  try {
+    const latestVersion = execSync('npm show vtta version').toString().trim(); // Replace 'vtta' with your actual package name
+    const currentVersion = packageJson.version;
+
+    if (latestVersion !== currentVersion) {
+      console.log(
+        chalk.yellow(`A new version (${latestVersion}) of vtta is available.`)
+      );
+      console.log(chalk.green(`Update by running: npm install -g vtta`));
+      console.log(chalk.blueBright(`Or use npx vtta@latest <project-name>`));
+    }
+  } catch (err) {
+    console.error(chalk.red('Error checking for updates:'), err);
+  }
 };

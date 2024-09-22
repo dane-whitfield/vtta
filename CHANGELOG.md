@@ -32,3 +32,8 @@
 - Fixes:
   - https://github.com/dane-whitfield/vtta/issues/1
   - https://github.com/dane-whitfield/vtta/issues/2
+
+## [1.2.0] - 2024-09-22
+
+- Adds util function to check users current version against the latest package version
+- Advises the user of any newer versions available
