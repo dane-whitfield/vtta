@@ -1,11 +1,3 @@
 # All files in the repository will require owner review
 
 - @danewhitfield
-
-# For files in the /src/ directory, require owner review
-
-/src/ @danewhitfield
-
-# For JavaScript files, require owner review
-
-\*.js @danewhitfield
