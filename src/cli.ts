@@ -4,9 +4,9 @@ import chalk from 'chalk';
 import fs from 'fs-extra';
 import path from 'path';
 
-import { validateProjectName } from './utils';
-import { getUserChoices } from './userPrompts';
-import { setupProject } from './projectSetup';
+import { validateProjectName } from './utils.js';
+import { getUserChoices } from './userPrompts.js';
+import { setupProject } from './projectSetup.js';
 
 program
   .version('1.1.1')

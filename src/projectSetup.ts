@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-import { UserChoices } from './types';
+import { UserChoices } from './types.js';
 import {
   installVite,
   installDependencies,
@@ -8,7 +8,7 @@ import {
   createFolderStructure,
   setupAxios,
   setupShadcn,
-} from './utils';
+} from './utils.js';
 
 export const setupProject = async (
   projectDir: string,

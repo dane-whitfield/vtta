@@ -2,7 +2,8 @@ import chalk from 'chalk';
 import fs from 'fs-extra';
 import path from 'path';
 import { execSync } from 'child_process';
-import { UserChoices } from './types';
+
+import { UserChoices } from './types.js';
 
 export const validateProjectName = (
   projectName: string,
@@ -150,30 +151,33 @@ export const setupShadcn = async (projectDir: string) => {
     process.exit(1);
   }
 
-  // 2. Update vite.config.ts with alias
+  // 2. Overwrite vite.config.ts with hardcoded content
   const viteConfigPath = path.join(projectDir, 'vite.config.ts');
-  try {
-    if (fs.existsSync(viteConfigPath)) {
-      let viteConfig = fs.readFileSync(viteConfigPath, 'utf-8');
 
-      if (!viteConfig.includes('alias')) {
-        const aliasConfig = `
+  // Hardcoded content for vite.config.ts
+  const viteConfigContent = `import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+
+// https://vitejs.dev/config/
+export default defineConfig({
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src")
-    }
-  },`;
-        // Insert alias config inside the defineConfig block
-        viteConfig = viteConfig.replace(
-          /(defineConfig\({)/,
-          `$1${aliasConfig}`
-        );
-        fs.writeFileSync(viteConfigPath, viteConfig);
-        console.log(chalk.green('vite.config.ts updated with alias.'));
-      }
-    }
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  plugins: [react()],
+});
+`;
+
+  try {
+    // Write or overwrite vite.config.ts with hardcoded content
+    fs.writeFileSync(viteConfigPath, viteConfigContent);
+    console.log(
+      chalk.green('vite.config.ts file created/updated successfully.')
+    );
   } catch (error) {
-    console.error(chalk.red('Error updating vite.config.ts:'), error);
+    console.error(chalk.red('Error creating/updating vite.config.ts:'), error);
     process.exit(1);
   }
 
