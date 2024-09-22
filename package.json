@@ -3,21 +3,21 @@
   "version": "1.2.0",
   "description": "A CLI to bootstrap a new Vite project with customisable options",
   "type": "module",
-  "main": "dist/cli.js",
-  "types": "dist/cli.d.ts",
+  "main": "dist/src/cli.js",
+  "types": "dist/src/cli.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/dane-whitfield/vtta.git"
   },
   "bin": {
-    "vtta": "./dist/cli.js"
+    "vtta": "./dist/src/cli.js"
   },
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "build": "tsc",
-    "start": "node --no-warnings dist/cli.js",
+    "build": "rm -rf dist && tsc",
+    "start": "node --no-warnings dist/src/cli.js",
     "prepublishOnly": "npm run build",
     "lint": "npm run biome:check",
     "biome:check": "biome check .",
