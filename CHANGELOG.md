@@ -37,3 +37,7 @@
 
 - Adds util function to check users current version against the latest package version
 - Advises the user of any newer versions available
+
+## [1.2.1] - 2024-09-24
+
+- Fixes `/dist/src` entry path error for builds
