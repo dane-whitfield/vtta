@@ -27,13 +27,15 @@ export const setupProject = async (
     await setupAxios(projectDir);
   }
 
-  if (userChoices.shadcn && userChoices.tailwind) {
-    await setupShadcn(projectDir);
-  } else {
-    console.log(
-      chalk.red(
-        'Shadcn requires Tailwind and cannot be used without it. Please start again and choose to install Tailwind if you wish to use Shadcn.'
-      )
-    );
+  if (userChoices.shadcn) {
+    if (userChoices.tailwind) {
+      await setupShadcn(projectDir);
+    } else {
+      console.log(
+        chalk.red(
+          'Shadcn requires Tailwind and cannot be used without it. Please start again and choose to install Tailwind if you wish to use Shadcn.'
+        )
+      );
+    }
   }
 };
