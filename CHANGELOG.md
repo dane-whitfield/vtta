@@ -41,3 +41,9 @@
 ## [1.2.1] - 2024-09-24
 
 - Fixes `/dist/src` entry path error for builds
+
+## [1.3.0] - 2024-09-24
+
+- Implements feature request:
+  - https://github.com/dane-whitfield/vtta/issues/9
+  - adds new vitest option for both JavaScript and TypeScript setups.
