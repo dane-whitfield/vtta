@@ -1,7 +1,8 @@
 export interface UserChoices {
-  typescript: boolean;
-  tailwind: boolean;
-  router: boolean;
-  axios: boolean;
-  shadcn: boolean;
+	typescript: boolean;
+	tailwind: boolean;
+	router: boolean;
+	axios: boolean;
+	shadcn: boolean;
+	vitest: boolean;
 }

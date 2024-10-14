@@ -1,41 +1,46 @@
-import chalk from 'chalk';
+import chalk from "chalk";
 
-import { UserChoices } from './types.js';
+import type { UserChoices } from "./types.js";
 import {
-  installVite,
-  installDependencies,
-  setupTailwind,
-  createFolderStructure,
-  setupAxios,
-  setupShadcn,
-} from './utils.js';
+	installVite,
+	installDependencies,
+	setupTailwind,
+	createFolderStructure,
+	setupAxios,
+	setupShadcn,
+	setupVitest,
+} from "./utils.js";
 
 export const setupProject = async (
-  projectDir: string,
-  userChoices: UserChoices
+	projectDir: string,
+	userChoices: UserChoices,
 ) => {
-  await installVite(userChoices.typescript);
-  await installDependencies(userChoices);
+	await installVite(userChoices.typescript);
+	await installDependencies(userChoices);
 
-  if (userChoices.tailwind) {
-    await setupTailwind(projectDir);
-  }
+	if (userChoices.tailwind) {
+		await setupTailwind(projectDir);
+	}
 
-  createFolderStructure(projectDir);
+	createFolderStructure(projectDir);
 
-  if (userChoices.axios) {
-    await setupAxios(projectDir);
-  }
+	if (userChoices.axios) {
+		await setupAxios(projectDir);
+	}
 
-  if (userChoices.shadcn) {
-    if (userChoices.tailwind) {
-      await setupShadcn(projectDir);
-    } else {
-      console.log(
-        chalk.red(
-          'Shadcn requires Tailwind and cannot be used without it. Please start again and choose to install Tailwind if you wish to use Shadcn.'
-        )
-      );
-    }
-  }
+	if (userChoices.shadcn) {
+		if (userChoices.tailwind) {
+			await setupShadcn(projectDir);
+		} else {
+			console.log(
+				chalk.red(
+					"Shadcn requires Tailwind and cannot be used without it. Please start again and choose to install Tailwind if you wish to use Shadcn.",
+				),
+			);
+		}
+	}
+
+	if (userChoices.vitest) {
+		await setupVitest(projectDir, userChoices.typescript);
+	}
 };
