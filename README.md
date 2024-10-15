@@ -4,7 +4,14 @@ A CLI tool to bootstrap a new Vite project with customisable options.
 
 ## Features
 
-- Easily create a new Vite project with options for TypeScript, Tailwind CSS, React Router, and ShadCN.
+- Easily create a new Vite project with options for:
+  -  TypeScript
+  -  Tailwind CSS
+  -  React Router
+  -  ShadCN
+  -  Vitest
+  -  Biome
+  -  And more...
 - Interactive prompts or defaults for quick setup.
 - Automatically installs dependencies and configures the project structure.
 
