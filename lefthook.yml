@@ -1,0 +1,12 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      run: npm run biome:check
+    format:
+      run: npm run biome:format
+
+commit-msg:
+  commands:
+    commitlint:
+      run: echo "Running Commitlint..." && npx --no -- commitlint --edit $1
