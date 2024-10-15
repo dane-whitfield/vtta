@@ -1,1 +1,2 @@
 npm run biome:check
+npm run biome:format
