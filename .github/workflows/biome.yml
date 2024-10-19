@@ -1,4 +1,4 @@
-name: Biome CI
+name: Biome Lint and Format CI
 
 on:
   pull_request:
