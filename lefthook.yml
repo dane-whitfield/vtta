@@ -5,6 +5,8 @@ pre-commit:
       run: npm run biome:check
     format:
       run: npm run biome:format
+    test:
+      run: npm run test:once
 
 commit-msg:
   commands:
