@@ -29,13 +29,14 @@ jobs:
         run: ls -la .changeset
 
       - name: Run Changesets
-        id: changesets
         uses: changesets/action@v1
         with:
           publish: npm
+          setupGitUser: true
+          createGithubReleases: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push Tags
         run: |

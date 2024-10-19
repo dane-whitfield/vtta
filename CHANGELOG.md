@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0
+
+### Minor Changes
+
+- Use changeset actions
+
 ## 1.3.4
 
 ### Patch Changes
