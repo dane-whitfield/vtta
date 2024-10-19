@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 
-import { UserChoices } from "./types.js";
+import type { UserChoices } from "./types.js";
 
 export const getUserChoices = async (
 	skipPrompts: boolean,

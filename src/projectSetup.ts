@@ -2,12 +2,12 @@ import chalk from "chalk";
 
 import type { UserChoices } from "./types.js";
 import {
-	installVite,
-	installDependencies,
-	setupTailwind,
 	createFolderStructure,
+	installDependencies,
+	installVite,
 	setupAxios,
 	setupShadcn,
+	setupTailwind,
 	setupVitest,
 } from "./utils.js";
 

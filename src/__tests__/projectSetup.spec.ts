@@ -1,17 +1,16 @@
-import { describe, it, expect, vi, afterEach } from "vitest";
 import chalk from "chalk";
-import { setupProject } from "../projectSetup"; // Assuming the main file is setupProject.ts
+import { afterEach, describe, expect, it, vi, vitest } from "vitest";
+import { setupProject } from "../projectSetup";
 import {
-	installVite,
-	installDependencies,
-	setupTailwind,
 	createFolderStructure,
+	installDependencies,
+	installVite,
 	setupAxios,
 	setupShadcn,
+	setupTailwind,
 	setupVitest,
 } from "../utils";
 
-// Mock the utils
 vi.mock("../utils", () => ({
 	installVite: vi.fn(),
 	installDependencies: vi.fn(),
@@ -37,6 +36,8 @@ describe("setupProject", () => {
 			tailwind: false,
 			axios: false,
 			shadcn: false,
+			router: false,
+			vitest: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -56,6 +57,8 @@ describe("setupProject", () => {
 			tailwind: true,
 			axios: false,
 			shadcn: false,
+			router: false,
+			vitest: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -76,6 +79,7 @@ describe("setupProject", () => {
 			axios: true,
 			shadcn: false,
 			router: false,
+			vitest: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -94,6 +98,8 @@ describe("setupProject", () => {
 			tailwind: true,
 			axios: false,
 			shadcn: true,
+			router: false,
+			vitest: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -112,6 +118,8 @@ describe("setupProject", () => {
 			tailwind: false,
 			axios: false,
 			shadcn: true,
+			router: false,
+			vitest: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -133,6 +141,8 @@ describe("setupProject", () => {
 			tailwind: true,
 			axios: true,
 			shadcn: true,
+			router: false,
+			vitest: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -153,6 +163,7 @@ describe("setupProject", () => {
 			axios: false,
 			shadcn: false,
 			vitest: true,
+			router: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -168,6 +179,7 @@ describe("setupProject", () => {
 			axios: false,
 			shadcn: false,
 			vitest: true,
+			router: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -183,6 +195,7 @@ describe("setupProject", () => {
 			axios: true,
 			shadcn: true,
 			vitest: true,
+			router: false,
 		};
 
 		await setupProject(projectDir, userChoices);

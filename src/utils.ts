@@ -1,10 +1,10 @@
+import { execSync } from "node:child_process";
+import path from "node:path";
 import chalk from "chalk";
 import fs from "fs-extra";
-import path from "path";
-import { execSync } from "child_process";
 
 import packageJson from "../package.json" assert { type: "json" };
-import { UserChoices } from "./types.js";
+import type { UserChoices } from "./types.js";
 
 export const validateProjectName = (
 	projectName: string,
@@ -18,9 +18,13 @@ export const validateProjectName = (
 
 export const createFolderStructure = (projectDir: string) => {
 	console.log(chalk.yellow("Creating folder structure..."));
-	["src/components", "src/pages", "src/utils", "src/hooks"].forEach((dir) => {
-		fs.mkdirSync(path.join(projectDir, dir), { recursive: true });
-	});
+	["src/components", "src/pages", "src/utils", "src/hooks"].reduce(
+		(acc, dir) => {
+			fs.mkdirSync(path.join(projectDir, dir), { recursive: true });
+			return acc;
+		},
+		{},
+	);
 };
 
 export const installVite = async (useTypescript: boolean) => {
@@ -91,7 +95,7 @@ export const getSomething = async () => {
   `;
 	fs.writeFileSync(path.join(projectDir, "src/utils/api.ts"), apiContent);
 
-	const envExampleContent = `VITE_API_URL=your_api_url_here`;
+	const envExampleContent = "VITE_API_URL=your_api_url_here";
 	fs.writeFileSync(path.join(projectDir, ".env.example"), envExampleContent);
 };
 
@@ -310,15 +314,15 @@ describe('App', () => {
 
 export const checkForUpdates = () => {
 	try {
-		const latestVersion = execSync("npm show vtta version").toString().trim(); // Replace 'vtta' with your actual package name
+		const latestVersion = execSync("npm show vtta version").toString().trim();
 		const currentVersion = packageJson.version;
 
 		if (latestVersion !== currentVersion) {
 			console.log(
 				chalk.yellow(`A new version (${latestVersion}) of vtta is available.`),
 			);
-			console.log(chalk.green(`Update by running: npm install -g vtta`));
-			console.log(chalk.blueBright(`Or use npx vtta@latest <project-name>`));
+			console.log(chalk.green("Update by running: npm install -g vtta"));
+			console.log(chalk.blueBright("Or use npx vtta@latest <project-name>"));
 		}
 	} catch (err) {
 		console.error(chalk.red("Error checking for updates:"), err);
