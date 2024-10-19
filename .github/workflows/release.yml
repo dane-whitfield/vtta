@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -21,7 +25,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: List changesets
+        run: ls -la .changeset
+
       - name: Run Changesets
+        id: changesets
         uses: changesets/action@v1
         with:
           publish: npm
