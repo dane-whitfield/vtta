@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  lint:
+  lint-format-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,8 +19,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Biome Linter checks
-        run: npm run biome:check
-
-      - name: Run Biome Linter format
-        run: npm run biome:format
+      - name: Run Biome Lint, Format, and Check
+        run: |
+          npm run biome:lint
+          npm run biome:format
+          npm run biome:check
