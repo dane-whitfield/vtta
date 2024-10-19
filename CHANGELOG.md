@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.4
+
+### Patch Changes
+
+- amend release action
+
 ## 1.3.3
 
 ### Patch Changes
