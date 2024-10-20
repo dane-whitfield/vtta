@@ -7,7 +7,7 @@ import fs from "fs-extra";
 import packageJson from "../package.json" assert { type: "json" };
 import { setupProject } from "./projectSetup.js";
 import { getUserChoices } from "./userPrompts.js";
-import { checkForUpdates, validateProjectName } from "./utils.js";
+import { checkForUpdates, validateProjectName } from "./utils/index.js";
 
 // Run the version check asynchronously to prevent blocking CLI execution
 setTimeout(checkForUpdates, 1000);
