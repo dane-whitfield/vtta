@@ -1,0 +1,9 @@
+export { validateProjectName } from "./projectValidation";
+export { createFolderStructure } from "./createFolderStructure";
+export { installDependencies } from "./installDependencies";
+export { setupTailwind } from "./setupTailwind";
+export { setupAxios } from "./setupAxios";
+export { setupShadcn } from "./setupShadcn";
+export { setupVitest } from "./setupVitest";
+export { checkForUpdates } from "./checkForUpdates";
+export { installVite } from "./installVite";

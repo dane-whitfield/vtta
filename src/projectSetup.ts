@@ -9,7 +9,7 @@ import {
 	setupShadcn,
 	setupTailwind,
 	setupVitest,
-} from "./utils.js";
+} from "./utils/index.js";
 
 export const setupProject = async (
 	projectDir: string,
