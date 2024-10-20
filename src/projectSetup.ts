@@ -6,6 +6,7 @@ import {
 	installDependencies,
 	installVite,
 	setupAxios,
+	setupBiome,
 	setupShadcn,
 	setupTailwind,
 	setupVitest,
@@ -42,5 +43,9 @@ export const setupProject = async (
 
 	if (userChoices.vitest) {
 		await setupVitest(projectDir, userChoices.typescript);
+	}
+
+	if (userChoices.biome) {
+		await setupBiome(projectDir);
 	}
 };

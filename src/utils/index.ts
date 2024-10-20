@@ -7,3 +7,4 @@ export { setupShadcn } from "./setupShadcn.js";
 export { setupVitest } from "./setupVitest.js";
 export { checkForUpdates } from "./checkForUpdates.js";
 export { installVite } from "./installVite.js";
+export { setupBiome } from "./setupBiome.js";

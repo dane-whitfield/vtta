@@ -6,6 +6,7 @@ import {
 	installDependencies,
 	installVite,
 	setupAxios,
+	setupBiome,
 	setupShadcn,
 	setupTailwind,
 	setupVitest,
@@ -19,6 +20,7 @@ vi.mock("../utils", () => ({
 	setupAxios: vi.fn(),
 	setupShadcn: vi.fn(),
 	setupVitest: vi.fn(),
+	setupBiome: vi.fn(),
 }));
 
 // Helper to spy on console.log
@@ -38,6 +40,7 @@ describe("setupProject", () => {
 			shadcn: false,
 			router: false,
 			vitest: false,
+			biome: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -59,6 +62,7 @@ describe("setupProject", () => {
 			shadcn: false,
 			router: false,
 			vitest: false,
+			biome: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -80,6 +84,7 @@ describe("setupProject", () => {
 			shadcn: false,
 			router: false,
 			vitest: false,
+			biome: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -100,6 +105,7 @@ describe("setupProject", () => {
 			shadcn: true,
 			router: false,
 			vitest: false,
+			biome: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -120,6 +126,7 @@ describe("setupProject", () => {
 			shadcn: true,
 			router: false,
 			vitest: false,
+			biome: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -143,6 +150,7 @@ describe("setupProject", () => {
 			shadcn: true,
 			router: false,
 			vitest: false,
+			biome: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -164,6 +172,7 @@ describe("setupProject", () => {
 			shadcn: false,
 			vitest: true,
 			router: false,
+			biome: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -180,6 +189,7 @@ describe("setupProject", () => {
 			shadcn: false,
 			vitest: true,
 			router: false,
+			biome: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -196,6 +206,7 @@ describe("setupProject", () => {
 			shadcn: true,
 			vitest: true,
 			router: false,
+			biome: false,
 		};
 
 		await setupProject(projectDir, userChoices);
@@ -206,5 +217,54 @@ describe("setupProject", () => {
 		expect(setupAxios).toHaveBeenCalledWith(projectDir);
 		expect(setupShadcn).toHaveBeenCalledWith(projectDir);
 		expect(setupVitest).toHaveBeenCalledWith(projectDir, true);
+	});
+
+	describe("biome", () => {
+		it("should set up Biome if selected", async () => {
+			const projectDir = "test-project";
+			const userChoices = {
+				typescript: true,
+				tailwind: false,
+				axios: false,
+				shadcn: false,
+				router: false,
+				vitest: false,
+				biome: true,
+			};
+
+			await setupProject(projectDir, userChoices);
+
+			expect(installVite).toHaveBeenCalledWith(true);
+			expect(installDependencies).toHaveBeenCalledWith(userChoices);
+			expect(createFolderStructure).toHaveBeenCalledWith(projectDir);
+			expect(setupBiome).toHaveBeenCalledWith(projectDir);
+			expect(setupTailwind).not.toHaveBeenCalled();
+			expect(setupAxios).not.toHaveBeenCalled();
+			expect(setupShadcn).not.toHaveBeenCalled();
+			expect(setupVitest).not.toHaveBeenCalled();
+		});
+
+		it("should handle a full setup including Biome", async () => {
+			const projectDir = "test-project";
+			const userChoices = {
+				typescript: true,
+				tailwind: true,
+				axios: true,
+				shadcn: true,
+				vitest: true,
+				router: false,
+				biome: true,
+			};
+
+			await setupProject(projectDir, userChoices);
+
+			expect(installVite).toHaveBeenCalledWith(true);
+			expect(installDependencies).toHaveBeenCalledWith(userChoices);
+			expect(setupTailwind).toHaveBeenCalledWith(projectDir);
+			expect(setupAxios).toHaveBeenCalledWith(projectDir);
+			expect(setupShadcn).toHaveBeenCalledWith(projectDir);
+			expect(setupVitest).toHaveBeenCalledWith(projectDir, true);
+			expect(setupBiome).toHaveBeenCalledWith(projectDir);
+		});
 	});
 });
