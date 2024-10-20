@@ -38,4 +38,4 @@ jobs:
 
       - name: Push Git Tags
         run: |
-          git push --follow-tags
+          git push --set-upstream origin changeset-release/main --follow-tags
