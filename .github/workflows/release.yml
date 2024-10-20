@@ -25,9 +25,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: List changesets
-        run: ls -la .changeset
-
       - name: Run Changesets
         uses: changesets/action@v1
         with:
@@ -38,7 +35,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push Tags
+      - name: Push Git Tags
         run: |
-          git tag v$(node -p "require('./package.json').version")
-          git push --tags
+          git push --follow-tags
