@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.0
+
+### Minor Changes
+
+- 6690850: Adds Biome as a scaffold option for users
+
 ## 1.5.4
 
 ### Patch Changes
