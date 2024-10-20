@@ -8,6 +8,16 @@ pre-commit:
     test:
       run: npm run test:once
 
+pre-push:
+  parallel: true
+  commands:
+    check-changeset:
+      run: |
+        if [ -z "$(ls -A .changeset/*.md 2>/dev/null)" ]; then
+          echo "⚠️ No changeset detected! Please run 'npx changeset' before pushing."
+          exit 1
+        fi
+
 commit-msg:
   commands:
     commitlint:
