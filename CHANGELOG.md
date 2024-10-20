@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.2
+
+### Patch Changes
+
+- 229cd37: Fix missing imports for prod
+
 ## 1.5.1
 
 ### Patch Changes
