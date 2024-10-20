@@ -5,4 +5,5 @@ export interface UserChoices {
 	axios: boolean;
 	shadcn: boolean;
 	vitest: boolean;
+	biome: boolean;
 }

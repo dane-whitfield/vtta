@@ -13,6 +13,7 @@ export const getUserChoices = async (
 			axios: true,
 			shadcn: true,
 			vitest: true,
+			biome: true,
 		};
 	}
 
@@ -51,6 +52,12 @@ export const getUserChoices = async (
 			type: "confirm",
 			name: "vitest",
 			message: "Do you want to set up Vitest for testing?",
+			default: true,
+		},
+		{
+			type: "confirm",
+			name: "biome",
+			message: "Do you want to set up Biome for linting and formatting?",
 			default: true,
 		},
 	]);
