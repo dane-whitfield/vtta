@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.1
+
+### Patch Changes
+
+- 92a8ff2: Abstract utils out into their own files
+
 ## 1.5.0
 
 ### Minor Changes
