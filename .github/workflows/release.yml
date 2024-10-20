@@ -34,8 +34,8 @@ jobs:
           createGithubReleases: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
       - name: Push Git Tags
         run: |
-                    git push --follow-tags
+          git push --follow-tags
