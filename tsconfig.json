@@ -9,9 +9,7 @@
 		"strict": true,
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
-		"noEmitOnError": true,
-		"allowImportingTsExtensions": true,
-		"noEmit": true
+		"noEmitOnError": true
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules", "dist", "**/*.spec.ts"]
