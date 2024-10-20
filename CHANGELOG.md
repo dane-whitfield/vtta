@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.3
+
+### Patch Changes
+
+- 89240c2: Update import paths to .js
+
 ## 1.5.2
 
 ### Patch Changes
