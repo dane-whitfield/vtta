@@ -13,10 +13,12 @@ pre-push:
   commands:
     check-changeset:
       run: |
-        if [ -z "$(ls -A .changeset/*.md 2>/dev/null)" ]; then
+        # Check for changes to the version files, but ignore changesets created by npx changeset version
+        if [ -z "$(ls -A .changeset/*.md 2>/dev/null | grep -v 'version')" ]; then
           echo "⚠️ No changeset detected! Please run 'npx changeset' before pushing."
           exit 1
         fi
+
 
 commit-msg:
   commands:
