@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.1
+
+### Patch Changes
+
+- 7911ccb: Add GH_PAT to secrets for release action
+- 7f15d8b: Add PR perms to release action
+- 9e40edb: Update lefthook pre-push cmd and release action
+- 6b5ef6e: Fix pre-push hook
+- a105ec6: Update push tag script for release action
+
 ## 1.4.0
 
 ### Minor Changes
