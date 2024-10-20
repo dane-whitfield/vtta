@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.1
+
+### Patch Changes
+
+- fe492f2: Fix shadcn init
+
 ## 1.6.0
 
 ### Minor Changes
