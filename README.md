@@ -91,9 +91,63 @@ If ShadCN is enabled, the `src/components` folder will include ShadCN UI compone
 
 `npm link`
 
-## Contributing
+# Contribution Guide
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue.
+Welcome to the vtta project! We're excited to have you contribute. To ensure a smooth workflow, please follow the steps below when creating new branches, making changes, and preparing for a release.
+
+## Workflow Overview
+
+1. **Create a New Branch**
+   - Start by creating a new branch from the main branch. Use a descriptive name for your branch related to the changes you're making.
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b your-feature-branch-name
+   ```
+
+2. **Make Your Changes**
+   - Make the necessary changes to the codebase. Be sure to run tests and linting to ensure your changes work as expected. These will also be run during the pre-commit phase for you.
+
+3. **Create a Changeset**
+   - Once your changes are ready, run the following command to create a changeset:
+   ```bash
+   npx changeset
+   ```
+   - Follow the prompts in the CLI to specify what has changed and the type of version bump (patch, minor, or major). Please stick to using patch for bug fixes and minor for new features unless they are large features then feel free to use major.
+
+5. **Commit Your Changes**
+   - Stage and commit your changes, including the new changeset file and any updates to your code:
+   ```bash
+   git add .
+   git commit -m "fix: describe your changes and the changeset"
+   ```
+
+6. **Push Your Branch**
+   - Push your changes to the remote repository:
+   ```bash
+   git push origin your-feature-branch-name
+   ```
+
+   _If at this point you haven't ran the `npx changeset` command, then you will be unable to push your changes until this has been done._
+
+7. **Open a Pull Request**
+   - Go to GitHub and open a pull request (PR) from your branch into `main`. Ensure to describe your changes and mention any relevant issues.
+
+## Note on Changeset Enforcement
+
+- Before you can push your branch, you will encounter a pre-push hook that checks for changesets. If you forget to run `npx changeset` before pushing, you'll receive a warning. Please ensure that you run this command to avoid any issues.
+
+## Merging PRs
+
+- Once your PR is approved and merged into `main` by a `CODEOWNER`, a GitHub Action will automatically handle the release process. This will:
+  - Create a temporary PR called `Version Packages` in a new branch `changeset-release/main`. Which does the following:
+    - Version the package.
+    - Update the `CHANGELOG.md`.
+  - Once this temporary PR is merged to main by a CODEOWNER it will:
+    - Put your changes and the version bump officially onto `main`.
+    - Allow us to run `npm publish` to release the newest version to `npm`.
+
+Thank you for contributing to vtta! If you have any questions or need assistance, feel free to ask.
 
 ## License
 
