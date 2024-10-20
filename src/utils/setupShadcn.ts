@@ -90,46 +90,16 @@ export default defineConfig({
 		process.exit(1);
 	}
 
-	// 3. Write the `components.json` file with default settings.
-	const componentsJsonPath = path.join(projectDir, "components.json");
-	const componentsJsonContent = `{
-    "$schema": "https://ui.shadcn.com/schema.json",
-    "style": "new-york",
-    "rsc": false,
-    "tsx": true,
-    "tailwind": {
-      "config": "tailwind.config.js",
-      "css": "src/index.css",
-      "baseColor": "slate",
-      "cssVariables": true,
-      "prefix": ""
-    },
-    "aliases": {
-      "components": "@/components",
-      "utils": "@/utils"
-    }
-  }`;
-
-	try {
-		fs.writeFileSync(componentsJsonPath, componentsJsonContent);
-		console.log(
-			chalk.green(
-				`components.json file created successfully at: ${componentsJsonPath}`,
-			),
-		);
-	} catch (error) {
-		console.error(chalk.red("Error creating components.json file:"), error);
-		process.exit(1);
-	}
-
-	// 4. Install the shadcn/ui dependencies.
+	// 3. Install the shadcn/ui dependencies.
 	try {
 		console.log(chalk.yellow("Installing shadcn/ui dependencies..."));
 
 		// Install shadcn-ui package
 		execSync("npm install shadcn-ui", { stdio: "inherit" });
-
 		console.log(chalk.green("shadcn/ui dependencies installed successfully!"));
+
+		// 4. Write the `components.json` file with default settings.
+		execSync("npx shadcn@latest init -y -d -f", { stdio: "inherit" });
 
 		// 5. Add basic starter button component after everything is in place
 		execSync("npx shadcn@latest add button", { stdio: "inherit" });
