@@ -1,6 +1,6 @@
 ---
-name: "Config or non-code related changes"
-about: Create an issue to request non-code changes such as README updates, or config changes.
+name: "Config or low/no code changes"
+about: Create an issue to request changes such as README updates, or config changes.
 title: "[CHORE]"
 labels: chore
 
