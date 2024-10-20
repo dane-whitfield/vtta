@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.4
+
+### Patch Changes
+
+- e9ed837: Update contribution guide for README
+
 ## 1.5.3
 
 ### Patch Changes
