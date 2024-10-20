@@ -1,6 +1,6 @@
 {
 	"name": "vtta",
-	"version": "1.5.3",
+	"version": "1.5.4",
 	"description": "A CLI to bootstrap a new Vite project with customisable options",
 	"type": "module",
 	"main": "dist/src/cli.js",
