@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
   packages: write
 
 jobs:
@@ -37,4 +38,4 @@ jobs:
 
       - name: Push Git Tags
         run: |
-          git push --follow-tags
+                    git push --follow-tags
