@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.2
+
+### Patch Changes
+
+- 4bc4cd6: Deprecate husky for lefthook
+
 ## 1.6.1
 
 ### Patch Changes
