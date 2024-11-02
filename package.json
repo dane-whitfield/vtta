@@ -15,6 +15,10 @@
 	"engines": {
 		"node": ">=18"
 	},
+	"resolutions": {
+		"lodash": "^4.17.21",
+		"tough-cookie": "^4.1.3"
+	},
 	"scripts": {
 		"build": "rm -rf dist && tsc",
 		"start": "node --no-warnings dist/src/cli.js",
@@ -44,19 +48,19 @@
 		"@changesets/cli": "^2.27.9",
 		"biome": "^0.3.3",
 		"chalk": "^5.3.0",
-		"commander": "^10.0.1",
+		"commander": "^12.1.0",
 		"fs-extra": "^11.2.0",
-		"inquirer": "^10.2.2"
+		"inquirer": "^12.0.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@commitlint/cli": "^19.5.0",
 		"@commitlint/config-conventional": "^19.5.0",
 		"@types/fs-extra": "^11.0.4",
-		"@types/node": "^22.5.5",
-		"@vitest/ui": "^2.1.1",
-		"lefthook": "^1.7.18",
-		"typescript": "^5.6.2",
-		"vitest": "^2.1.1"
+		"@types/node": "^22.8.6",
+		"@vitest/ui": "^2.1.4",
+		"lefthook": "^1.8.2",
+		"typescript": "^5.6.3",
+		"vitest": "^2.1.4"
 	}
 }
