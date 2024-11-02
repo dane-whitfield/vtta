@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.3
+
+### Patch Changes
+
+- 0fde5d5: Update deps
+
 ## 1.6.2
 
 ### Patch Changes
