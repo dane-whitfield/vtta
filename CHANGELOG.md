@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.6
+
+### Patch Changes
+
+- 36d0aea: Add missing arg from setupShadcn to prevent failed npm publishes
+
 ## 1.6.5
 
 ### Patch Changes
