@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.5
+
+### Patch Changes
+
+- b689cf4: Update shadcn setup to use dynamic extensions for .js or .ts when overriding vite config to prevent duplicate config files for vite
+
 ## 1.6.4
 
 ### Patch Changes
