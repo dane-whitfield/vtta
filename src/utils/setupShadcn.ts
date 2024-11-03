@@ -3,67 +3,76 @@ import fs from "node:fs";
 import path from "node:path";
 import chalk from "chalk";
 
-export const setupShadcn = async (projectDir: string) => {
+export const setupShadcn = async (
+	projectDir: string,
+	useTypescript: boolean,
+) => {
 	console.log(chalk.yellow("Setting up shadcn/ui..."));
 
-	// 1. Update tsconfig.json and tsconfig.app.json with hardcoded content first
-	const tsconfigPath = path.join(projectDir, "tsconfig.json");
-	const tsconfigAppPath = path.join(projectDir, "tsconfig.app.json");
+	// 1. Update tsconfig files only if TypeScript is enabled
+	if (useTypescript) {
+		const tsconfigPath = path.join(projectDir, "tsconfig.json");
+		const tsconfigAppPath = path.join(projectDir, "tsconfig.app.json");
 
-	const tsconfigContent = `{
-    "compilerOptions": {
-      "target": "ES2020",
-      "useDefineForClassFields": true,
-      "lib": ["ES2020", "DOM", "DOM.Iterable"],
-      "module": "ESNext",
-      "skipLibCheck": true,
+		const tsconfigContent = `{
+			"compilerOptions": {
+			  "target": "ES2020",
+			  "useDefineForClassFields": true,
+			  "lib": ["ES2020", "DOM", "DOM.Iterable"],
+			  "module": "ESNext",
+			  "skipLibCheck": true,
 
-      /* Bundler mode */
-      "moduleResolution": "bundler",
-      "allowImportingTsExtensions": true,
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "noEmit": true,
-      "jsx": "react-jsx",
+			  /* Bundler mode */
+			  "moduleResolution": "bundler",
+			  "allowImportingTsExtensions": true,
+			  "resolveJsonModule": true,
+			  "isolatedModules": true,
+			  "noEmit": true,
+			  "jsx": "react-jsx",
 
-      /* Linting */
-      "strict": true,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "noFallthroughCasesInSwitch": true,
+			  /* Linting */
+			  "strict": true,
+			  "noUnusedLocals": true,
+			  "noUnusedParameters": true,
+			  "noFallthroughCasesInSwitch": true,
 
-      /* shadcn */
-      "baseUrl": ".",
-      "paths": {
-        "@/*": ["./src/*"]
-      }
-    },
-    "include": ["src"],
-    "references": [{ "path": "./tsconfig.node.json" }]
-  }`;
+			  /* shadcn */
+			  "baseUrl": ".",
+			  "paths": {
+				"@/*": ["./src/*"]
+			  }
+			},
+			"include": ["src"],
+			"references": [{ "path": "./tsconfig.node.json" }]
+		  }`;
 
-	// Write tsconfig.json
-	try {
-		fs.writeFileSync(tsconfigPath, tsconfigContent);
-		console.log(chalk.green("tsconfig.json updated successfully."));
-	} catch (error) {
-		console.error(chalk.red("Error updating tsconfig.json:"), error);
-		process.exit(1);
+		// Write tsconfig.json
+		try {
+			fs.writeFileSync(tsconfigPath, tsconfigContent);
+			console.log(chalk.green("tsconfig.json updated successfully."));
+		} catch (error) {
+			console.error(chalk.red("Error updating tsconfig.json:"), error);
+			process.exit(1);
+		}
+
+		// Write tsconfig.app.json (if needed)
+		try {
+			fs.writeFileSync(tsconfigAppPath, tsconfigContent);
+			console.log(chalk.green("tsconfig.app.json updated successfully."));
+		} catch (error) {
+			console.error(chalk.red("Error updating tsconfig.app.json:"), error);
+			process.exit(1);
+		}
 	}
 
-	// Write tsconfig.app.json (if needed)
-	try {
-		fs.writeFileSync(tsconfigAppPath, tsconfigContent);
-		console.log(chalk.green("tsconfig.app.json updated successfully."));
-	} catch (error) {
-		console.error(chalk.red("Error updating tsconfig.app.json:"), error);
-		process.exit(1);
-	}
+	// 2. Set up vite.config with appropriate extension
+	const viteConfigExtension = useTypescript ? "ts" : "js";
+	const viteConfigPath = path.join(
+		projectDir,
+		`vite.config.${viteConfigExtension}`,
+	);
 
-	// 2. Overwrite vite.config.ts with hardcoded content
-	const viteConfigPath = path.join(projectDir, "vite.config.ts");
-
-	// Hardcoded content for vite.config.ts
+	// Hardcoded content for vite.config
 	const viteConfigContent = `import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -80,13 +89,18 @@ export default defineConfig({
 `;
 
 	try {
-		// Write or overwrite vite.config.ts with hardcoded content
+		// Write or overwrite vite.config with the correct extension
 		fs.writeFileSync(viteConfigPath, viteConfigContent);
 		console.log(
-			chalk.green("vite.config.ts file created/updated successfully."),
+			chalk.green(
+				`vite.config.${viteConfigExtension} file created/updated successfully.`,
+			),
 		);
 	} catch (error) {
-		console.error(chalk.red("Error creating/updating vite.config.ts:"), error);
+		console.error(
+			chalk.red(`Error creating/updating vite.config.${viteConfigExtension}:`),
+			error,
+		);
 		process.exit(1);
 	}
 
