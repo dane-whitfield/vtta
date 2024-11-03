@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6.4
+
+### Patch Changes
+
+- 85eb295: Update release action to better check changeset temp PRs
+- 739be8e: Resolves issue #32 by adding a check for changeset branches and not running the release action against them
+
 ## 1.6.3
 
 ### Patch Changes
