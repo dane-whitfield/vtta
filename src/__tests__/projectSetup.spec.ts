@@ -114,7 +114,10 @@ describe("setupProject", () => {
 			expect(installVite).toHaveBeenCalledWith(false);
 			expect(installDependencies).toHaveBeenCalledWith(userChoices);
 			expect(setupTailwind).toHaveBeenCalledWith(projectDir);
-			expect(setupShadcn).toHaveBeenCalledWith(projectDir);
+			expect(setupShadcn).toHaveBeenCalledWith(
+				projectDir,
+				userChoices.typescript,
+			);
 			expect(spyLog).not.toHaveBeenCalled();
 		});
 
@@ -161,7 +164,10 @@ describe("setupProject", () => {
 		expect(installDependencies).toHaveBeenCalledWith(userChoices);
 		expect(setupTailwind).toHaveBeenCalledWith(projectDir);
 		expect(setupAxios).toHaveBeenCalledWith(projectDir);
-		expect(setupShadcn).toHaveBeenCalledWith(projectDir);
+		expect(setupShadcn).toHaveBeenCalledWith(
+			projectDir,
+			userChoices.typescript,
+		);
 		expect(spyLog).not.toHaveBeenCalled();
 	});
 
@@ -218,7 +224,10 @@ describe("setupProject", () => {
 			expect(installDependencies).toHaveBeenCalledWith(userChoices);
 			expect(setupTailwind).toHaveBeenCalledWith(projectDir);
 			expect(setupAxios).toHaveBeenCalledWith(projectDir);
-			expect(setupShadcn).toHaveBeenCalledWith(projectDir);
+			expect(setupShadcn).toHaveBeenCalledWith(
+				projectDir,
+				userChoices.typescript,
+			);
 			expect(setupVitest).toHaveBeenCalledWith(projectDir, true);
 		});
 	});
@@ -266,7 +275,10 @@ describe("setupProject", () => {
 			expect(installDependencies).toHaveBeenCalledWith(userChoices);
 			expect(setupTailwind).toHaveBeenCalledWith(projectDir);
 			expect(setupAxios).toHaveBeenCalledWith(projectDir);
-			expect(setupShadcn).toHaveBeenCalledWith(projectDir);
+			expect(setupShadcn).toHaveBeenCalledWith(
+				projectDir,
+				userChoices.typescript,
+			);
 			expect(setupVitest).toHaveBeenCalledWith(projectDir, true);
 			expect(setupBiome).toHaveBeenCalledWith(projectDir);
 		});

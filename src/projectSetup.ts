@@ -31,7 +31,7 @@ export const setupProject = async (
 
 	if (userChoices.shadcn) {
 		if (userChoices.tailwind) {
-			await setupShadcn(projectDir);
+			await setupShadcn(projectDir, userChoices.typescript);
 		} else {
 			console.log(
 				chalk.red(
