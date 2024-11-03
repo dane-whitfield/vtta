@@ -96,49 +96,51 @@ describe("setupProject", () => {
 		expect(spyLog).not.toHaveBeenCalled();
 	});
 
-	it("should set up Shadcn if both Tailwind and Shadcn are selected", async () => {
-		const projectDir = "test-project";
-		const userChoices = {
-			typescript: false,
-			tailwind: true,
-			axios: false,
-			shadcn: true,
-			router: false,
-			vitest: false,
-			biome: false,
-		};
+	describe("shadcn", () => {
+		it("should set up Shadcn if both Tailwind and Shadcn are selected", async () => {
+			const projectDir = "test-project";
+			const userChoices = {
+				typescript: false,
+				tailwind: true,
+				axios: false,
+				shadcn: true,
+				router: false,
+				vitest: false,
+				biome: false,
+			};
 
-		await setupProject(projectDir, userChoices);
+			await setupProject(projectDir, userChoices);
 
-		expect(installVite).toHaveBeenCalledWith(false);
-		expect(installDependencies).toHaveBeenCalledWith(userChoices);
-		expect(setupTailwind).toHaveBeenCalledWith(projectDir);
-		expect(setupShadcn).toHaveBeenCalledWith(projectDir);
-		expect(spyLog).not.toHaveBeenCalled();
-	});
+			expect(installVite).toHaveBeenCalledWith(false);
+			expect(installDependencies).toHaveBeenCalledWith(userChoices);
+			expect(setupTailwind).toHaveBeenCalledWith(projectDir);
+			expect(setupShadcn).toHaveBeenCalledWith(projectDir);
+			expect(spyLog).not.toHaveBeenCalled();
+		});
 
-	it("should not set up Shadcn and log an error if Tailwind is not selected", async () => {
-		const projectDir = "test-project";
-		const userChoices = {
-			typescript: false,
-			tailwind: false,
-			axios: false,
-			shadcn: true,
-			router: false,
-			vitest: false,
-			biome: false,
-		};
+		it("should not set up Shadcn and log an error if Tailwind is not selected", async () => {
+			const projectDir = "test-project";
+			const userChoices = {
+				typescript: false,
+				tailwind: false,
+				axios: false,
+				shadcn: true,
+				router: false,
+				vitest: false,
+				biome: false,
+			};
 
-		await setupProject(projectDir, userChoices);
+			await setupProject(projectDir, userChoices);
 
-		expect(installVite).toHaveBeenCalledWith(false);
-		expect(installDependencies).toHaveBeenCalledWith(userChoices);
-		expect(setupShadcn).not.toHaveBeenCalled();
-		expect(spyLog).toHaveBeenCalledWith(
-			chalk.red(
-				"Shadcn requires Tailwind and cannot be used without it. Please start again and choose to install Tailwind if you wish to use Shadcn.",
-			),
-		);
+			expect(installVite).toHaveBeenCalledWith(false);
+			expect(installDependencies).toHaveBeenCalledWith(userChoices);
+			expect(setupShadcn).not.toHaveBeenCalled();
+			expect(spyLog).toHaveBeenCalledWith(
+				chalk.red(
+					"Shadcn requires Tailwind and cannot be used without it. Please start again and choose to install Tailwind if you wish to use Shadcn.",
+				),
+			);
+		});
 	});
 
 	it("should handle a full setup with Tailwind, Axios, and Shadcn", async () => {
@@ -163,60 +165,62 @@ describe("setupProject", () => {
 		expect(spyLog).not.toHaveBeenCalled();
 	});
 
-	it("should set up Vitest with JavaScript if TypeScript is not selected", async () => {
-		const projectDir = "test-project";
-		const userChoices = {
-			typescript: false,
-			tailwind: false,
-			axios: false,
-			shadcn: false,
-			vitest: true,
-			router: false,
-			biome: false,
-		};
+	describe("vitest", () => {
+		it("should set up Vitest with JavaScript if TypeScript is not selected", async () => {
+			const projectDir = "test-project";
+			const userChoices = {
+				typescript: false,
+				tailwind: false,
+				axios: false,
+				shadcn: false,
+				vitest: true,
+				router: false,
+				biome: false,
+			};
 
-		await setupProject(projectDir, userChoices);
+			await setupProject(projectDir, userChoices);
 
-		expect(setupVitest).toHaveBeenCalledWith(projectDir, false);
-	});
+			expect(setupVitest).toHaveBeenCalledWith(projectDir, false);
+		});
 
-	it("should set up Vitest with TypeScript if TypeScript is selected", async () => {
-		const projectDir = "test-project";
-		const userChoices = {
-			typescript: true,
-			tailwind: false,
-			axios: false,
-			shadcn: false,
-			vitest: true,
-			router: false,
-			biome: false,
-		};
+		it("should set up Vitest with TypeScript if TypeScript is selected", async () => {
+			const projectDir = "test-project";
+			const userChoices = {
+				typescript: true,
+				tailwind: false,
+				axios: false,
+				shadcn: false,
+				vitest: true,
+				router: false,
+				biome: false,
+			};
 
-		await setupProject(projectDir, userChoices);
+			await setupProject(projectDir, userChoices);
 
-		expect(setupVitest).toHaveBeenCalledWith(projectDir, true);
-	});
+			expect(setupVitest).toHaveBeenCalledWith(projectDir, true);
+		});
 
-	it("should handle a full setup including Vitest", async () => {
-		const projectDir = "test-project";
-		const userChoices = {
-			typescript: true,
-			tailwind: true,
-			axios: true,
-			shadcn: true,
-			vitest: true,
-			router: false,
-			biome: false,
-		};
+		it("should handle a full setup including Vitest", async () => {
+			const projectDir = "test-project";
+			const userChoices = {
+				typescript: true,
+				tailwind: true,
+				axios: true,
+				shadcn: true,
+				vitest: true,
+				router: false,
+				biome: false,
+			};
 
-		await setupProject(projectDir, userChoices);
+			await setupProject(projectDir, userChoices);
 
-		expect(installVite).toHaveBeenCalledWith(true);
-		expect(installDependencies).toHaveBeenCalledWith(userChoices);
-		expect(setupTailwind).toHaveBeenCalledWith(projectDir);
-		expect(setupAxios).toHaveBeenCalledWith(projectDir);
-		expect(setupShadcn).toHaveBeenCalledWith(projectDir);
-		expect(setupVitest).toHaveBeenCalledWith(projectDir, true);
+			expect(installVite).toHaveBeenCalledWith(true);
+			expect(installDependencies).toHaveBeenCalledWith(userChoices);
+			expect(setupTailwind).toHaveBeenCalledWith(projectDir);
+			expect(setupAxios).toHaveBeenCalledWith(projectDir);
+			expect(setupShadcn).toHaveBeenCalledWith(projectDir);
+			expect(setupVitest).toHaveBeenCalledWith(projectDir, true);
+		});
 	});
 
 	describe("biome", () => {
