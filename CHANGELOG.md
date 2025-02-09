@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.9
+
+### Patch Changes
+
+- b18cd14: fix import for package.json in checkForUpdates.ts
+
 ## 1.6.8
 
 ### Patch Changes
