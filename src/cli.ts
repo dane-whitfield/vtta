@@ -3,11 +3,24 @@ import path from "node:path";
 import chalk from "chalk";
 import { program } from "commander";
 import fs from "fs-extra";
-
-import packageJson from "../package.json";
 import { setupProject } from "./projectSetup.js";
 import { getUserChoices } from "./userPrompts.js";
 import { checkForUpdates, validateProjectName } from "./utils/index.js";
+
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+type PackageJson = {
+	version: string;
+};
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const packageJson: PackageJson = JSON.parse(
+	await readFile(join(__dirname, "../package.json"), "utf8"),
+);
 
 // Run the version check asynchronously to prevent blocking CLI execution
 setTimeout(checkForUpdates, 1000);
