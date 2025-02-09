@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.8
+
+### Patch Changes
+
+- 0ba407e: fix imports for package.json issues in cli.ts
+
 ## 1.6.7
 
 ### Patch Changes
