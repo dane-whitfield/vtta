@@ -4,7 +4,7 @@ import chalk from "chalk";
 import { program } from "commander";
 import fs from "fs-extra";
 
-import packageJson from "../package.json" assert { type: "json" };
+import packageJson from "../package.json";
 import { setupProject } from "./projectSetup.js";
 import { getUserChoices } from "./userPrompts.js";
 import { checkForUpdates, validateProjectName } from "./utils/index.js";
