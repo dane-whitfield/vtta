@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.7
+
+### Patch Changes
+
+- e7f07e8: fix package.json import in cli.tsx
+
 ## 1.6.6
 
 ### Patch Changes
